@@ -9,6 +9,4 @@ public interface IProductPriceService {
 	public ProductPrice read(String id);
 	public ProductPrice save(ProductPrice productPrice);
 
-	public List<ProductPrice> readAll();
-
 }
