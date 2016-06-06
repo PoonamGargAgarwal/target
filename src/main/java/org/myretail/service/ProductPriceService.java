@@ -2,6 +2,7 @@ package org.myretail.service;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.myretail.entities.ProductPrice;
 import org.myretail.repository.mongo.IProductPriceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class ProductPriceService implements IProductPriceService{
+	private static final Logger logger = Logger.getLogger(ProductPriceService.class);
 	@Autowired
 	public IProductPriceRepository productPricerepository;
 
@@ -19,11 +21,7 @@ public class ProductPriceService implements IProductPriceService{
 		
 	}
 
-	@Override
-	public List<ProductPrice> readAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 	@Override
 	public ProductPrice save(ProductPrice productPrice) {
