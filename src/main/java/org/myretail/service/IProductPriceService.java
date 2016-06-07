@@ -6,7 +6,12 @@ import org.myretail.entities.Product;
 import org.myretail.entities.ProductPrice;
 
 public interface IProductPriceService {
-	public ProductPrice read(String id);
-	public ProductPrice save(ProductPrice productPrice);
+	ProductPrice read(String id);
+
+	ProductPrice save(ProductPrice productPrice);
+
+	ProductPrice update(ProductPrice productPrice);
+
+	ProductPrice delete(ProductPrice productPrice);
 
 }

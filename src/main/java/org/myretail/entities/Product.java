@@ -1,5 +1,7 @@
 package org.myretail.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Transient;
 
 @Entity(name="product")
-public class Product {
+public class Product implements  Serializable{
 
 	private static final long serialVersionUID = -5378396373373165919L;
 	

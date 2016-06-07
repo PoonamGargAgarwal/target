@@ -10,4 +10,6 @@ public interface IProductPriceRepository extends MongoRepository<ProductPrice, S
 	@Query("{ ?0 : ?1 }")
 	ProductPrice findByAttributes(String key, String value);
 
+	
+
 }

@@ -1,9 +1,11 @@
 package org.myretail.entities;
 
+import java.io.Serializable;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection="productPrice")
-public class ProductPrice {
+public class ProductPrice implements Serializable {
 	@Id
 	private String id;
 	

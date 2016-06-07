@@ -9,14 +9,15 @@
     		http://www.springframework.org/schema/data/mongo/spring-mongo-1.7.xsd">
 	
   	<mongo:repositories base-package="org.myretail.repository.mongo"/>
+  	<mongo:db-factory dbname="test" host="localhost" port="27017"/>  
+               
   
-	<!-- Default bean name is 'mongo' -->
-	<mongo:mongo host="localhost" port="27017"/>
+	<!-- Default bean name is 'mongo' 
+	<mongo:mongo host="localhost" port="27017"/>-->
 	
 	<!-- Offers convenience methods and automatic mapping between MongoDB JSON documents and your domain classes. -->
   	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
-  			<constructor-arg ref="mongo"/>
-		    <constructor-arg name="databaseName" value="test"/>
+  		 <constructor-arg name="mongoDbFactory" ref="mongoDbFactory"/>
   	</bean>
 	
 	
