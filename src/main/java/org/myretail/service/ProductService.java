@@ -22,25 +22,26 @@ public class ProductService implements IProductService {
 	public IProductRepository productRepository;
 	@Autowired
 	public IProductPriceService productPriceService;
-	@Cacheable(value="productFindCache", key="#id")
+
+	@Cacheable(value = "productFindCache", key = "#id")
 	public Product read(Long id) {
 		slowQuery(2000L);
 		Product product = productRepository.findOne(id);
 		slowQuery(2000L);
 		ProductPrice productPrice = productPriceService.read(id.toString());
-		if ((productPrice != null) && (product !=null)) {
+		if ((productPrice != null) && (product != null)) {
 			product.setPrice(productPrice.getPrice());
 		}
 		return product;
 	}
+
 	@Override
 	public Product saveProduct(Product productItem) {
-		Product product = productRepository.save(productItem);		
+		Product product = productRepository.save(productItem);
 		ProductPrice productPriceView = new ProductPrice();
 		productPriceView.setId(product.getpId().toString());
 		productPriceView.setPrice(productItem.getPrice());
-		ProductPrice productPrice = productPriceService
-				.save(productPriceView);
+		ProductPrice productPrice = productPriceService.save(productPriceView);
 		return product;
 	}
 
@@ -50,10 +51,12 @@ public class ProductService implements IProductService {
 		productRepository.delete(id);
 		return product;
 	}
+
 	@Override
 	public Product savePrice(Long id, Product productView) {
 
 		Product product = productRepository.findOne(id);
+		logger.info("price is" + productView.getPrice());
 		if (product != null) {
 			ProductPrice productPriceView = new ProductPrice();
 			productPriceView.setId(product.getpId().toString());
@@ -64,12 +67,13 @@ public class ProductService implements IProductService {
 		}
 		return product;
 	}
-	private void slowQuery(long seconds){
-	    try {
-                Thread.sleep(seconds);
-            } catch (InterruptedException e) {
-                throw new IllegalStateException(e);
-            }
+
+	private void slowQuery(long seconds) {
+		try {
+			Thread.sleep(seconds);
+		} catch (InterruptedException e) {
+			throw new IllegalStateException(e);
+		}
 	}
 
 }
